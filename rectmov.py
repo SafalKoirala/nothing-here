@@ -1,40 +1,41 @@
 import pygame
 pygame.init()
 
-win = pygame.display.set_mode((500,500))
-pygame.display.set_caption("First Game")
+win = pygame.display.set_mode((500,500)) #window size
+pygame.display.set_caption("First Game") #window title
 
-x = 10
+x = 10 #initial postion of rectangle x,y
 y = 10
-width = 40
+width = 40  #size of rectangle
 height = 40
-vel =   10
+vel =   20  #speed of movement
+
 
 run = True
 
 while run:
-    pygame.time.delay(100)
+    pygame.time.delay(100) #delay in milisec
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
-    keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed() #movement define gareko ani paxadi ko part boundary ma rakhna lai
     
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and x > vel:
         x -= vel
 
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and x < 500 - width - vel :
         x += vel
 
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_UP] and y > vel:
         y -= vel
 
-    if keys[pygame.K_DOWN]:
+    if keys[pygame.K_DOWN] and y < 500 - height - vel:
         y += vel
     
-    win.fill((0,0,0))  # Fills the screen with black
-    pygame.draw.rect(win, (250,20,20), (x, y, width, height))   
-    pygame.display.update() 
+    win.fill((0,0,0))  # Fills the screen with black so that it looks like moving
+    pygame.draw.rect(win, (250,20,20), (x, y, width, height))   #rectangle ko color ra postion and size
+    pygame.display.update() #to show change in postion
     
-pygame.quit()
+pygame.quit() #mathi ko cross lain functionig garauna
